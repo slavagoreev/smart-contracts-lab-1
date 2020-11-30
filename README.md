@@ -1,8 +1,7 @@
-# Blockchain Lab 10
+# Blockchain Lab 11
 
 * Vyacheslav Goreev
 * Rim Rakhimov
-* Ilya Alonov
-* Enes Ayan
-* Igor Krashennikov
+* Daria Vaskovskaya
+* Roman Solovyov
  
