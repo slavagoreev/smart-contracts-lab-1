@@ -9,307 +9,179 @@ async function loadContract() {
   return await new window.web3.eth.Contract(
     [
       {
-        "constant": false,
-        "inputs": [
+        inputs: [
           {
-            "name": "delegate",
-            "type": "address"
+            internalType: "string",
+            name: "question",
+            type: "string",
           },
           {
-            "name": "numTokens",
-            "type": "uint256"
-          }
-        ],
-        "name": "approve",
-        "outputs": [
-          {
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "receiver",
-            "type": "address"
+            internalType: "string[]",
+            name: "answers",
+            type: "string[]",
           },
           {
-            "name": "numTokens",
-            "type": "uint256"
-          }
+            internalType: "uint256",
+            name: "correct_answer_index",
+            type: "uint256",
+          },
         ],
-        "name": "transfer",
-        "outputs": [
-          {
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
+        name: "addQuestion",
+        outputs: [],
+        stateMutability: "payable",
+        type: "function",
       },
       {
-        "constant": false,
-        "inputs": [
+        inputs: [
           {
-            "name": "owner",
-            "type": "address"
+            internalType: "bytes32",
+            name: "question_id",
+            type: "bytes32",
           },
           {
-            "name": "buyer",
-            "type": "address"
+            internalType: "uint256",
+            name: "correct_index",
+            type: "uint256",
           },
-          {
-            "name": "numTokens",
-            "type": "uint256"
-          }
         ],
-        "name": "transferFrom",
-        "outputs": [
-          {
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
+        name: "answerQuestion",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
       },
       {
-        "inputs": [
+        inputs: [],
+        name: "getQuestions",
+        outputs: [
           {
-            "name": "total",
-            "type": "uint256"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "constructor"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "name": "tokenOwner",
-            "type": "address"
+            components: [
+              {
+                internalType: "bytes32",
+                name: "id",
+                type: "bytes32",
+              },
+              {
+                internalType: "string",
+                name: "question",
+                type: "string",
+              },
+              {
+                internalType: "string[]",
+                name: "answers",
+                type: "string[]",
+              },
+              {
+                internalType: "uint256",
+                name: "reward",
+                type: "uint256",
+              },
+            ],
+            internalType: "struct Questionnaire.Question[]",
+            name: "",
+            type: "tuple[]",
           },
-          {
-            "indexed": true,
-            "name": "spender",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "name": "tokens",
-            "type": "uint256"
-          }
         ],
-        "name": "Approval",
-        "type": "event"
+        stateMutability: "view",
+        type: "function",
       },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "name": "from",
-            "type": "address"
-          },
-          {
-            "indexed": true,
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "name": "tokens",
-            "type": "uint256"
-          }
-        ],
-        "name": "Transfer",
-        "type": "event"
-      },
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "owner",
-            "type": "address"
-          },
-          {
-            "name": "delegate",
-            "type": "address"
-          }
-        ],
-        "name": "allowance",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "tokenOwner",
-            "type": "address"
-          }
-        ],
-        "name": "balanceOf",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "decimals",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint8"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "name",
-        "outputs": [
-          {
-            "name": "",
-            "type": "string"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "symbol",
-        "outputs": [
-          {
-            "name": "",
-            "type": "string"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "totalSupply",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      }
     ],
-    "0x547Ce04e92817c5647F96f8d3bF1Ca2AdF7BFaC6"
+    "0x99adeebedcd951fc7dd455f625a204215e7b9532"
   );
 }
 
-const wallets = [
-  '0x8178f86e231e4C01cC796f6Bc02361e64f96Cafe',
-  '0x274c5db131BbE3555b2C95d85d93A56C21fA37ed'
-]
-
-async function printName() {
-  const name = await window.contract.methods.name().call();
-  updateStatus(name, '#name');
+async function createQuestion(question, answers, correctAnswer, reward, from) {
+  await window.contract.methods
+    .addQuestion(question, answers.toArray(), correctAnswer)
+    .send({ from, value: Web3.utils.toWei(reward) });
 }
 
-async function printSymbol() {
-  const symbol = await window.contract.methods.symbol().call();
-  updateStatus(symbol, '#symbol');
+async function answerQuestion(questionId, answerId) {
+  console.log({ questionId, answerId });
+  return await window.contract.methods
+    .answerQuestion(questionId, answerId)
+    .send({ from: await getCurrentAccount() });
 }
 
-async function printTotalSupply() {
-  const totalSupply = await window.contract.methods.totalSupply().call();
-  updateStatus(totalSupply, '#total');
-}
-
-async function transferFrom(from, to, amount) {
-  await window.contract.methods.transfer(to, amount).send({ from });
-}
-
-function handleModalOpen(wallet) {
-  window.target = wallet;
-  $('#amountHelp').html(`Money will be wired to <code>${wallet}</code>`)
-  web3.eth.getAccounts((err, walletList) => {
-    $('#targetWallet').html(walletList.map(w => `<option value="${w}">${w}</option>`));
-  });
-}
-
-async function printUsers() {
-  $('#wallets').empty();
-  return await wallets.forEach(async (wallet, id) => {
-    updateStatus('Loading wallets...');
-    const balance = await window.contract.methods.balanceOf(wallet).call();
+async function fetchQuestions() {
+  $("#questions").empty();
+  updateStatus("Loading questions...");
+  const questions = await window.contract.methods.getQuestions().call();
+  questions.forEach((question, id) => {
     const card = $(`
       <div class="col-12 col-md-6">
           <div class="card">
               <div class="card-body">
-                  <h5 class="card-title">Wallet ${id + 1}</h5>
-                  <pre class="mb-2 text-muted">${wallet}</pre>
-                  <p class="card-text">Balance: ${balance}</p>
-                  <a href="#" class="btn btn-primary" data-toggle="modal" 
-                    data-target="#transferModal" 
-                    onclick="handleModalOpen('${wallet}')"
-                  >
-                    Transfer to this wallet
-                  </a>
+                  <h5 class="card-title">Question ${id + 1}</h5>
+                  <pre class="mb-2 text-muted">Reward: ${Web3.utils.fromWei(
+                    String(question.reward)
+                  )} ETH</pre>
+                  <p class="card-text"><strong>${question.question}</strong></p>
+                  <form onsubmit='handleAnswer('${question.id}')">
+                    ${question.answers
+                      .map(
+                        (answer, answerId) => `
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" data-id="${answerId}" name="answer_${question.id}" id="answer_${question.id}_${answerId}" value="${answerId}">
+                        <label class="form-check-label" for="answer_${question.id}_${answerId}">
+                          ${answer}
+                        </label>
+                      </div>
+                    `
+                      )
+                      .join("")}
+                    <button type="submit" class="btn btn-primary btn-sm mt-2" id="submit_${
+                      question.id
+                    }" onclick="event.preventDefault(); handleAnswer('${
+      question.id
+    }')">Answer</button>    
+                  </form>              
               </div>
           </div>
       </div>
     `);
-    $('#wallets').append(card);
-    updateStatus('Ready for new requests');
-  })
+    $("#questions").append(card);
+  });
+  updateStatus("Ready for new requests");
 }
 
 async function handleSubmit() {
-  $('#transferBtn').html(`
+  $("#submitBtn").html(`
     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
     Loading...
-  `)
-  const result = await transferFrom($('#targetWallet').val(), window.target, +$('#amount').val());
-  console.log(result);
-  await printUsers();
-  $('#transferBtn').html('Transfer');
-  $('#transferModal').modal('hide');
+  `);
+  const accountId = await getCurrentAccount();
+  await createQuestion(
+    $("#title").val(),
+    $('[id^="answer_input_"]').map((id, el) => $(el).val()),
+    +$("#correctAnswer").val(),
+    $("#reward").val(),
+    accountId
+  );
+  $("#submitBtn").html("Ask a question");
+  await fetchQuestions();
 }
 
+async function handleAnswer(questionId) {
+  const btn = $("#submit_" + questionId);
+  const answer = $(`[name="answer_${questionId}"]:checked`);
+  btn.html(`
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    Sending...
+  `);
+  if (answer) {
+    try {
+      await answerQuestion(questionId, +answer.data("id"));
+      alert("Cool, you are right");
+      await fetchQuestions();
+    } catch (e) {
+      alert("Wrong answer!");
+      console.log(e.message);
+    }
+  } else {
+    alert("Please, select an answer");
+  }
+  btn.html("Answer");
+}
 
 async function getCurrentAccount() {
   const accounts = await window.web3.eth.getAccounts();
@@ -319,14 +191,11 @@ async function getCurrentAccount() {
 async function load() {
   await loadWeb3();
   window.contract = await loadContract();
+  await fetchQuestions();
   updateStatus("Ready!");
-  await printName();
-  await printSymbol();
-  await printTotalSupply();
-  await printUsers();
 }
 
-function updateStatus(status, selector = '#output') {
+function updateStatus(status, selector = "#output") {
   const statusEl = document.querySelector(selector);
   statusEl.innerHTML = status;
   console.log(status);
