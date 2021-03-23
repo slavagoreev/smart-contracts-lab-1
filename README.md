@@ -1,7 +1,4 @@
-# Blockchain Lab 11
+# Smart contract development. Lab #1
 
 * Vyacheslav Goreev
 * Rim Rakhimov
-* Daria Vaskovskaya
-* Roman Solovyov
- 

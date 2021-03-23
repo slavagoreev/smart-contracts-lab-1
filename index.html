@@ -24,69 +24,32 @@
       integrity="sha512-ppuvbiAokEJLjOUQ24YmpP7tTaLRgzliuldPRZ01ul6MhRC+B8LzcVkXmUsDee7ne9chUfApa9/pWrIZ3rwTFQ=="
       crossorigin="anonymous"
     ></script>
-    <title>Blockchain</title>
+    <title>Sport Complex ERC20 Token</title>
   </head>
   <body>
     <div class="container page">
-      <h3>Questionnaire smart contract</h3>
-      <div class="mt-3">
-        <form onsubmit="handleSubmit()">
-          <div class="form-group">
-            <label for="title">Question title</label>
-            <input
-              class="form-control"
-              id="title"
-              placeholder="What is the size of the Sun?"
-            />
-          </div>
-          <hr />
-          <div class="form-group">
-            <label for="answer_input_0">Answer 0</label>
-            <input class="form-control" id="answer_input_0" />
-          </div>
-          <div class="form-group">
-            <label for="answer_input_1">Answer 1</label>
-            <input class="form-control" id="answer_input_1" />
-          </div>
-          <div class="form-group">
-            <label for="answer_input_2">Answer 2</label>
-            <input class="form-control" id="answer_input_2" />
-          </div>
-          <div class="form-group">
-            <label for="answer_input_3">Answer 3</label>
-            <input class="form-control" id="answer_input_3" />
-          </div>
-          <hr />
-          <div class="row">
-            <div class="col">
-              <div class="form-group">
-                <label for="reward">Reward (ETH)</label>
-                <input type="number" class="form-control" id="reward" />
-              </div>
-            </div>
-            <div class="col">
-              <div class="form-group">
-                <label for="correctAnswer">Correct answer ID</label>
-                <input type="number" class="form-control" id="correctAnswer" />
-              </div>
-            </div>
-          </div>
-          <button type="reset" class="btn btn-secondary">Reset</button>
-          <button
-            id="submitBtn"
-            type="button"
-            class="btn btn-primary ml-3"
-            onclick="handleSubmit()"
-          >
-            Ask a question
-          </button>
-        </form>
+      <h3>Sport Complex ERC20 Token</h3>
+
+      <div class="my-3">
+        <code id="output">Loading...</code>
       </div>
 
-      <hr />
-
-      <code id="output" class="my-3">Loading...</code>
-      <div id="questions" class="row mt-4"></div>
+      <button
+        id="check-location"
+        class="btn btn-primary"
+        type="button"
+        onclick="handleLocationCheck()"
+      >
+        Check my location
+      </button>
+      <button
+        id="pretend"
+        type="button"
+        class="btn btn-outline-secondary ml-3"
+        onclick="handleLocationCheck(true)"
+      >
+        Fake location and check
+      </button>
     </div>
     <script src="scripts.js"></script>
   </body>
