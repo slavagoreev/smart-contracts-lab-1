@@ -376,7 +376,7 @@ async function handleLocationCheck(pretendLikeIAmInSC = false) {
       console.error(e);
       alert(`You are far away from Sport complex`);
     } finally {
-      if (!pretendLikeIAmInSC) {
+      if (pretendLikeIAmInSC) {
         $("#pretend").html(`Fake location and check`);
       } else {
         $("#check-location").html(`Check my location`);
