@@ -347,14 +347,21 @@ async function requestTokens(distance) {
     .send({ from: await getCurrentAccount() });
 }
 
+async function checkBalance() {
+  updateStatus("Loading...");
+  const from = await getCurrentAccount();
+  const response = await window.contract.methods.balanceOf(from).call();
+  updateStatus(`Current balance is ${response}SCT`);
+}
+
 async function handleLocationCheck(pretendLikeIAmInSC = false) {
   $(!pretendLikeIAmInSC ? "#check-location" : "#pretend").html(`
     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
     Loading...
   `);
   navigator.geolocation.getCurrentPosition(async (position) => {
-    let lat = !pretendLikeIAmInSC ? position.coords.latitude : 55.7512491;
-    let long = !pretendLikeIAmInSC ? position.coords.longitude : 48.7422761;
+    let lat = !pretendLikeIAmInSC ? position.coords.latitude : 55.751244;
+    let long = !pretendLikeIAmInSC ? position.coords.longitude : 48.74225;
 
     const distance = computeDistance(lat, long, 55.7512495, 48.7422761).toFixed(
       0
@@ -364,15 +371,17 @@ async function handleLocationCheck(pretendLikeIAmInSC = false) {
     );
     try {
       await requestTokens(distance);
-      updateStatus(`Your location successfully sent`);
+      alert(`Your location successfully sent`);
     } catch (e) {
       console.error(e);
-      updateStatus(`You are far away from Sport complex`);
-    }
-    if (!pretendLikeIAmInSC) {
-      $("#pretend").html(`Fake location and check`);
-    } else {
-      $("#check-location").html(`Check my location`);
+      alert(`You are far away from Sport complex`);
+    } finally {
+      if (!pretendLikeIAmInSC) {
+        $("#pretend").html(`Fake location and check`);
+      } else {
+        $("#check-location").html(`Check my location`);
+      }
+      await checkBalance();
     }
   });
 }
@@ -385,7 +394,7 @@ async function getCurrentAccount() {
 async function load() {
   await loadWeb3();
   window.contract = await loadContract();
-  updateStatus("Ready!");
+  await checkBalance();
 }
 
 function updateStatus(status, selector = "#output") {
