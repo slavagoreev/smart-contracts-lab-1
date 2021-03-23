@@ -348,13 +348,13 @@ async function requestTokens(distance) {
 }
 
 async function handleLocationCheck(pretendLikeIAmInSC = false) {
-  $(pretendLikeIAmInSC ? "#check-location" : "#pretend").html(`
+  $(!pretendLikeIAmInSC ? "#check-location" : "#pretend").html(`
     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
     Loading...
   `);
   navigator.geolocation.getCurrentPosition(async (position) => {
-    let lat = pretendLikeIAmInSC ? position.coords.latitude : 55.7512491;
-    let long = pretendLikeIAmInSC ? position.coords.longitude : 48.7422761;
+    let lat = !pretendLikeIAmInSC ? position.coords.latitude : 55.7512491;
+    let long = !pretendLikeIAmInSC ? position.coords.longitude : 48.7422761;
 
     const distance = computeDistance(lat, long, 55.7512495, 48.7422761).toFixed(
       0
@@ -369,7 +369,7 @@ async function handleLocationCheck(pretendLikeIAmInSC = false) {
       console.error(e);
       updateStatus(`You are far away from Sport complex`);
     }
-    if (pretendLikeIAmInSC) {
+    if (!pretendLikeIAmInSC) {
       $("#pretend").html(`Fake location and check`);
     } else {
       $("#check-location").html(`Check my location`);
